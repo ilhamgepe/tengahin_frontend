@@ -1,5 +1,6 @@
 "use client";
 import { LoginAction } from "@/actions/auth/login";
+import SubmitButton from "@/components/buttons/SubmitButton";
 import AlertError from "@/components/ui/alertError";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -77,13 +78,7 @@ const LoginPage = () => {
               </div>
 
               <div>
-                <Button
-                  type="submit"
-                  className="w-full"
-                  // disabled={fetcher.state !== "idle"}
-                >
-                  Login
-                </Button>
+                <SubmitButton>Login</SubmitButton>
               </div>
             </form>
             <div className="text-center text-sm">

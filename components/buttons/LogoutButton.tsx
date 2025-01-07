@@ -14,7 +14,7 @@ const LogoutButton = () => {
   }, [state]);
   return (
     <form action={action}>
-      <SubmitButton>Logout</SubmitButton>
+      <SubmitButton variant={"destructive"}>Logout</SubmitButton>
     </form>
   );
 };

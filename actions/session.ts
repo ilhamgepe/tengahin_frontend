@@ -66,8 +66,7 @@ export async function GetSession() {
     return payload;
   } catch (error) {
     console.error("Failed to get session:", error);
-    await DeleteSession();
-    redirect("/login");
+    return null;
   }
 }
 
