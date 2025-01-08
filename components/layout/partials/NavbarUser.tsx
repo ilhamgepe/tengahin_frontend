@@ -6,20 +6,20 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu-edited";
 import { Separator } from "@/components/ui/separator";
 import { cn, getInitials } from "@/lib/utils";
 import Link from "next/link";
 
 const NavbarUser = async () => {
-  const user = await GetSession();
+  const session = await GetSession();
+  // console.log("SESSION IN NAVBAR USER", session);
+
   return (
     <div>
-      {user && (
+      {session ? (
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -35,7 +35,7 @@ const NavbarUser = async () => {
                     </AvatarFallback>
                   </Avatar>
                   <span className="font-medium truncate hidden sm:inline-block">
-                    {user.user.fullname}
+                    {session?.user.fullname}
                   </span>
                 </div>
               </NavigationMenuTrigger>
@@ -60,8 +60,7 @@ const NavbarUser = async () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      )}
-      {!user && (
+      ) : (
         <div className="flex items-center gap-2">
           <Link
             className={cn(buttonVariants({ variant: "outline" }))}

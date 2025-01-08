@@ -1,10 +1,14 @@
 import { GalleryVerticalEnd } from "lucide-react";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 import BurgerButton from "./partials/BurgerButton";
 import NavbarUser from "./partials/NavbarUser";
 import SearchNavbar from "./partials/SearchNavbar";
+import { GetSession } from "@/actions/session";
 
 export default async function Navbar({ children }: PropsWithChildren) {
+  const session = await GetSession();
+  // console.log("SESSION IN NAVBAR", session);
+
   return (
     <div>
       <div className="w-full sticky top-0 backdrop-blur-md border-b-[1px] shadow-md">

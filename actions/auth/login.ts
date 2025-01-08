@@ -1,5 +1,4 @@
 "use server";
-
 import { LoginSchema } from "@/lib/zod/authSchema";
 import { CreateSession } from "../session";
 import { redirect } from "next/navigation";
@@ -33,7 +32,7 @@ export async function LoginAction(formState: any, formData: FormData) {
 
     if (res.ok) {
       const result: AuthResponse = await res.json();
-      await CreateSession({
+      const session = await CreateSession({
         access_token: result.data.access_token,
         expires_at: result.data.expires_at,
         refresh_token: result.data.refresh_token,
@@ -54,7 +53,9 @@ export async function LoginAction(formState: any, formData: FormData) {
         };
       }
     }
-  } catch (err) {}
+  } catch (err) {
+    console.log("ERR CATCH IN LOGIN", err);
+  }
 
   redirect("/");
 }
